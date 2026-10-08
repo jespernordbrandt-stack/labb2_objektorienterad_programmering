@@ -8,12 +8,13 @@
 
 //Game Loop: Köra loopen som väntar på tangentbordstryck (Console.ReadKey()), flyttar spelaren, anropar .Update() på alla fiender i LevelData, och kollar kollisioner/attacker.
 
-//Rendering / Synfält: Anropa LevelData-elementen och räkna ut Pythagoras sats för att avgöra vad som ska ritas ut inom radie 5.
+
 using System;
 
-public class Class1
-{
-	public Class1()
-	{
-	}
+public class GameLoop
+{ 
+    public GameLoop()
+    { 
+
+    }
 }

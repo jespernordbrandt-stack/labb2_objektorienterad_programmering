@@ -2,9 +2,9 @@
 //Snake: HP = 25, Attack = 3d4+2, Defence = 1d8+5
 using System;
 
-public class Class1
+public class Snake
 {
-	public Class1()
+	public Snake()
 	{
 	}
 }

@@ -1,10 +1,14 @@
 ﻿//Klassen “Wall” ärver direkt av “LevelElement”, och klasserna “Rat” och “Snake” ärver direkt av “Enemy” (indirekt av “LevelElement”).
 
-using System;
 
-public class Class1
+
+
+
+public class Wall : LevelElement
 {
-	public Class1()
+	public Wall()
 	{
+		Symbol = '#';
+		Color = ConsoleColor.Gray;
 	}
 }
