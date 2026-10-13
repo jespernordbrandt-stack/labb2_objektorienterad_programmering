@@ -3,12 +3,13 @@
 
 
 
-
-public class Wall : LevelElement
+namespace labb2
 {
-	public Wall()
+	public class Wall : LevelElement
 	{
-		Symbol = '#';
-		Color = ConsoleColor.Gray;
+		public Wall(int x, int y) : base(x, y, '#', ConsoleColor.Gray)
+		{
+
+		}
 	}
 }

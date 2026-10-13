@@ -2,11 +2,28 @@
 //Rat: HP = 10, Attack = 1d6+3, Defence = 1d6+1
 
 
-using System;
-
-public class Rat
+namespace labb2
 {
-	public Rat()
+	public class Rat : Enemy
 	{
+		private static Random random = new Random();
+
+		public Rat(int x, int y)
+			: base (x, y, 'r', ConsoleColor.DarkRed, "Rat", 10, new Dice (1, 6, 3), new Dice (1, 6, 1))
+		{
+		}
+
+        public override void Update()
+        {
+			int direction = random.Next(0, 4);
+
+			switch (direction)
+			{
+				case 0: X++; break; // Höger
+                case 1: X--; break; // Vänster
+                case 2: Y++; break; // Nedåt
+                case 3: Y--; break; // Uppåt
+			}
+        }
 	}
 }
