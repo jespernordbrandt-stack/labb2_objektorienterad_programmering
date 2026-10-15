@@ -9,12 +9,68 @@
 //Game Loop: Köra loopen som väntar på tangentbordstryck (Console.ReadKey()), flyttar spelaren, anropar .Update() på alla fiender i LevelData, och kollar kollisioner/attacker.
 
 
-using System;
+namespace labb2
+{
+    public class GameLoop
+    {
+        private LevelData levelData;
+        private bool isRunning;
 
-public class GameLoop
-{ 
-    public GameLoop()
-    { 
+        public GameLoop(string filePath)
+        {
+            // Här läses Level1.txt in och skapar alla väggar, fiender och spelaren
+            levelData = new LevelData(filePath);
+            isRunning = true;
+        }
 
+        public void Run()
+        {
+            // Enkel kontroll så att spelaren faktiskt skapats från kartan
+            if (levelData.Player == null)
+            {
+                Console.WriteLine("Kunde inte hitta spelaren ('@') i kartfilen!");
+                Console.ReadKey();
+                return;
+            }
+
+            while (isRunning)
+            {
+                Console.Clear();
+
+                // 1. Rita ut alla element på banan (väggar, råttor, ormar etc.)
+                foreach (var element in levelData.Elements)
+                {
+                    element.Draw();
+                }
+
+                // 2. Rita ut spelaren
+                levelData.Player.Draw();
+
+                // 3. Lyssna på spelarens tangentbordstryckningar
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                    // Tryck på ESC för att avsluta spelet
+                    if (keyInfo.Key == ConsoleKey.Escape)
+                    {
+                        isRunning = false;
+                        break;
+                    }
+
+                    // Räkna ut nästa position via Player-klassens HandleInput
+                    int newX, newY;
+                    levelData.Player.HandleInput(keyInfo, out newX, out newY);
+
+                    // Enkel koll: Om vi vill bygga ut kollar vi om ny position är en vägg här.
+                    // För att bara testa rörelsen just nu flyttar vi spelaren direkt:
+                    levelData.Player.X = newX;
+                    levelData.Player.Y = newY;
+                }
+
+                // Liten paus för att inte överbelasta processorn
+                System.Threading.Thread.Sleep(50);
+            }
+        }
     }
 }
