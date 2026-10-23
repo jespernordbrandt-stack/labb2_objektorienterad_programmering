@@ -7,15 +7,16 @@ namespace labb2
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public char Symbol { get; protected set; }
-        public ConsoleColor Color { get; protected set; }
-        public bool IsDiscovered { get; set; } = false; // Håller reda på om elementet har setts
+        public char CharSymbol { get; set; }
+        public ConsoleColor Color { get; set; }
+        public bool IsDiscovered { get; set; } = false;
 
+        // Lägg till denna konstruktor så att base(...) fungerar i underklasserna!
         protected LevelElement(int x, int y, char symbol, ConsoleColor color)
         {
             X = x;
             Y = y;
-            Symbol = symbol;
+            CharSymbol = symbol;
             Color = color;
         }
 
@@ -23,7 +24,7 @@ namespace labb2
         {
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = Color;
-            Console.Write(Symbol);
+            Console.Write(CharSymbol);
             Console.ResetColor();
         }
     }
